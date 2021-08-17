@@ -1,0 +1,266 @@
+.base (@theme-color,@cp-theme-color) {
+  .theme-color,
+  .theme-color-active.active,
+  .qpVanTabbar .van-tabbar-item,
+  .van-tabbar-item--active,
+  // .van-picker__confirm,
+  .van-tab--active,
+  .van-number-keyboard__close,
+  .van-key--gray,
+  .QpNotice-bar,
+  .iconColor,
+  .self-vns-header .title .active,
+  .number-input.focus::after{
+    color: @theme-color !important;
+  }
+  .self-vns-header {
+    .title {
+      .active {
+        border-bottom: 0.05rem solid @theme-color !important;
+      }
+    }
+  }
+  .theme-boder{
+     border-bottom: 1px solid @theme-color !important;
+  }
+  .van-tab--active, .amount-item,.nvs-message-code{
+    border-color: @theme-color !important;
+  }
+  .amount-item{
+    &.active{
+      border-color :@theme-color !important;
+      color: @theme-color !important;
+    }
+  }
+  .betLottery-k3{
+    .van-number-keyboard{
+      .van-number-keyboard__close,
+      .van-key--gray,
+      .h5-icon-qingchu,
+      .number-input.focus::after{
+        color: #164630 !important;
+      }
+    }
+   .van-tab--active{
+     .van-ellipsis{
+       color: #f4c829 !important;
+     }
+   } 
+  } 
+
+  .van-button{
+    border:none;
+  }
+  .van-button::before{
+    z-index:9999;    
+  }
+
+  .theme-bg,
+  .pk10-num-none,
+ 
+  .van-button--primary,
+  .theme-bg-active.active {
+    background-color: @theme-color !important;
+  }
+  .link-type.active {
+    background-color: @theme-color !important;
+  }
+  
+
+  .theme-border,
+  .van-button--primary,
+  .theme-border-active.active,
+  .number-input.focus{
+    // border: 0.02rem solid @theme-color !important;
+  }
+
+ 
+  .theme-border-top,
+  .theme-border-top-active.active {
+    border-top-color: @theme-color !important;
+  }
+
+  .theme-border-bottom,
+  .theme-border-bottom-active.active {
+    border-bottom-color: @theme-color !important;
+  }
+
+  .theme-border-left,
+  .theme-border-left-active.active {
+    border-left-color: @theme-color !important;
+  }
+
+  .theme-border-right,
+  .theme-border-right-active.active {
+    border-right-color: @theme-color !important;
+  }
+
+  .theme-border-1px,
+  .theme-border-1px-active.active {
+    border: 0.02rem solid @theme-color !important;
+  }
+  .cp-theme-border-1px,
+  .cp-theme-border-1px-active.active {
+    border: 0.02rem solid @cp-theme-color !important;
+  }
+  .link-type.active{
+    border: 0.02rem solid @theme-color !important;
+  }
+  .theme-fill-color,
+  .theme-fill-color-active.active {
+    fill: @theme-color !important;
+  }
+
+  .van-switch--on {
+    background-color: @theme-color !important;
+  }
+
+  .van-tabs__line {
+    background-color: @theme-color !important;
+  }
+
+  .avatar-list .avatar.active:after {
+    border: 0.08rem solid @theme-color;
+  }
+  .van-tabs{
+    #focus::after{
+        width:0.03rem;
+        height:0.3rem;
+        background-color:rgb(85, 83, 83);
+        position: absolute;
+        left: 0.12rem;
+        top: 0.22rem;
+        line-height: 1;
+        display: inline-block;
+        -webkit-transform: translateY(-10%);
+        transform: translateY(-10%);
+        -webkit-animation: number-input-focus 500ms linear infinite alternate;
+        animation: number-input-focus 500ms linear infinite alternate;
+    }
+  }
+
+  .tabs-5{
+    .van-tab{
+      padding: 0 0.28rem!important;
+     
+    }
+    .van-tabs__line{
+      width:18%!important;
+    }
+  }
+
+  .user-box{
+    .vux-confirm{
+      .weui-dialog{
+        .weui-dialog__hd{
+          padding:0.2rem!important;
+          .weui-dialog__title{
+            line-height: 1.3rem;
+          }
+        }
+        .weui-dialog__bd{
+          padding:0!important
+        }
+      }
+    }
+   }
+   #lotterBetPage{
+     .weui-dialog__ft{
+       .weui-dialog__btn_primary{
+         color:#000000!important;
+       }
+       .weui-dialog__btn_default{
+          color:@theme-color !important;
+       }
+     }
+   }
+   .k3{
+    .auto-box-header-static{
+      .van-tab--active{
+        color:@theme-color !important;
+      }
+    }
+    .van-tab--active{
+      .van-ellipsis{
+        color: #f4c829 !important;
+      }
+      .van-tab__text {
+        color: #f4c829 !important;
+      }
+    }
+  }
+  .report-content{
+    .van-tabs{
+      .van-tab--active{
+        background-color: @theme-color !important;
+        color:white!important;
+        font-weight: normal!important;
+      }
+    }
+  }
+
+  .rules-dialog {
+    /deep/ .van-dialog__confirm {
+      color: #ffffff;
+      background-color: @theme-color;
+      width: 92%;
+      height: 0.9rem;
+      margin: 0.24rem auto;
+      display: block;
+      border-radius: 0.2rem;
+    }
+  }
+  .bet-dialog{
+    .van-dialog__message{
+      font-size: 0.28rem;
+      font-weight: normal;
+    }
+  }
+  .van-dialog{
+    width:275px!important;
+    .van-dialog__confirm{
+      color: @theme-color;
+    }
+  }
+ 
+
+
+//vux UI
+.weui-dialog{
+  border-radius: 0.4rem!important;
+  font-weight: 700;
+  opacity: 0.98;
+  width:75%;
+  margin-top: 45%!important;
+  top: 0!important;
+  .weui-dialog__hd{
+    padding:0 0.2rem 0.2rem 0.2rem;
+    .weui-dialog__title{
+      display: inline-block;
+      line-height: 0.4rem;
+      font-weight:600 !important;
+      font-size: 0.4rem !important;
+    }
+  }
+  .weui-dialog__bd{
+    padding: 0;
+    min-height: auto;
+    font-weight: normal;
+    color: #333;
+    padding: 0.48rem 0.6rem;
+    padding-top:0.2rem;
+  }
+  .weui-dialog__ft{
+    height:0.96rem;
+    .weui-dialog__btn{
+      color: #292828;
+    }
+    .weui-dialog__btn_primary{
+      color: @theme-color;
+    }
+  }
+}
+
+}
+
+

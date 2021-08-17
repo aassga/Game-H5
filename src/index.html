@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="pragma" CONTENT="no-cache">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="app-mobile-web-app-capable" content="yes">
+  <!-- uc强制竖屏 -->
+  <meta name="screen-orientation" content="portrait">
+  <!-- QQ强制竖屏 -->
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-orientation" content="portrait">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <link rel="apple-touch-icon-precomposed" sizes =“128x128” href="<%= htmlWebpackPlugin.options.options.cdn %>static/logo-icon.png?v=<%= htmlWebpackPlugin.options.options.version %>">
+  <link rel="icon" href="<%= htmlWebpackPlugin.options.options.cdn %>static/favicon.ico?v=<%= htmlWebpackPlugin.options.options.version %>">
+  <title>Welcome</title>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- <script type="text/javascript" charset="UTF-8" src="//res.cdn.openinstall.io/openinstall.js"></script> -->
+  <script  charset="UTF-8" type="text/javascript" src="https://cstaticdun.126.net/load.min.js?v=<%= htmlWebpackPlugin.options.options.version %>"></script>
+  <script type="text/javascript" src="//www.shareinstall.com.cn/js/page/jshareinstall.min.js"></script>
+  <script src="https://res.sharetrace.com/sharetrace.min.js"></script>
+  <script src="https://acstatic-dun.126.net/tool.min.js?t=<%= Date.now() %>"></script>
+</head>
+<body>
+<noscript><strong>很抱歉,如果没有启用JavaScript,将无法正常运行,请启用它继续.</strong></noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+
+  <!-- 使用CDN的JS檔案 -->
+  <% for (var i in htmlWebpackPlugin.options.cdn &&
+  htmlWebpackPlugin.options.cdn.js) { %>
+  <script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+  <% } %>
+  <!-- 使用CDN的JS檔案 -->
+</body>
+</html>

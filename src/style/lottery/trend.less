@@ -1,0 +1,263 @@
+.lottery-trend {
+  width: 100%;
+  font-weight: bold;
+  font-size: 0.28rem;
+  color: #606060;
+
+  .trend-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+  .col-result{
+    .col-content{
+      .red {
+        background-color: #f36055!important;
+      }
+      .vnsRed{
+        background-color: #F76665!important;
+      }
+      .blue {
+        background-color: #20a2d8!important;
+      }
+      .vnsBlue {
+        background-color: #00bdd4!important;
+      }
+      .green {
+        background-color: #49bb27!important;
+      }
+    }
+  }
+
+  .row {
+    display: inline-block;
+    white-space: nowrap;
+    height: 0.56rem;
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 100%;
+    border-right: 0.02rem solid #f3f3f3;
+
+    &.title {
+      border-top: 0.02rem solid #f3f3f3;
+    }
+    &.trend-title{
+      border-bottom: 0.02rem solid #f3f3f3;
+    }
+
+    &:nth-child(2n - 1) {
+      background-color: #ffffff;
+    }
+
+    &:nth-child(2n) {
+      background-color: #f8f8f8;
+    }
+
+    .row-content {
+      display: inline-block;
+      white-space: nowrap;
+      height: 100%;
+      box-sizing: border-box;
+      vertical-align: top;
+
+    }
+
+    .col {
+      display: inline-block;
+      white-space: nowrap;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-right: 0.02rem solid #f3f3f3;
+      box-sizing: border-box;
+      vertical-align: top;
+
+      .col-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        margin-left:0!important;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        vertical-align: top;
+        .ball-res{
+          width:0.46rem!important;
+          height:.46rem!important;
+        }
+        .ball {
+          width: 0.4rem;
+          height: 0.4rem;
+          border-radius: 50%;
+          margin: 0.02rem;
+          color: #FFFFFF;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: nowrap;
+          text-align: center;
+          font-size: 0.26rem;
+          font-weight:400;
+          position: relative;
+
+          &.add {
+            transform: scale(1.6);
+            transform-origin: center 55%;
+            margin: 0;
+          }
+
+          &.line {
+            //z-index: 450;
+            //transform: translate3d(0, 0, 0);
+          }
+
+          &.red {
+            background-color: #FB162D;
+            font-weight: 700;
+          }
+          &.vnsRed{
+            background-color: #F76665;
+            font-weight: 700;
+          }
+
+          &.blue {
+            background-color: #5598FC;
+            font-weight: 700;
+          }
+
+          &.vnsBlue {
+            background-color: #00bdd4;
+            font-weight: 700;
+          }
+
+          &.green {
+            background-color: #4CAF50;
+            font-weight:700;
+          }
+        }
+      }
+    }
+  }
+
+  .lottery-trend-body {
+    width: 100%;
+    position: relative;
+
+    &:after {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+
+    .lottery-trend-issue {
+      float: left;
+      width: 14%;
+    }
+
+    .lottery-trend-content {
+      float: left;
+      width:86% ;
+      position: relative;
+    }
+  }
+}
+
+.trend.k3 {
+  background-color: #35684e !important;
+
+  [class*=van-hairline]::after {
+    border-color: #456f59 !important;
+  }
+
+  .lottery-trend {
+    color: #c9ebd0;
+
+    .row {
+      &:nth-child(2n - 1) {
+        background-color: #2e6345;
+        border-right: 0.02rem solid #35684e;
+      }
+
+      &:nth-child(2n) {
+        background-color: #35684e;
+        border-right: 0.02rem solid #35684e;
+      }
+
+      &.title {
+        border-top: 0.02rem solid #456f59;
+      }
+
+      .col {
+        border-right: 0.02rem solid #456f59;
+
+        .col-content {
+
+          .ball {
+            &.red {
+              background-color: #597d36;
+            }
+
+            &.blue {
+              background-color: #bb9431;
+            }
+
+            &.green {
+              background-color: #4CAF50;
+            }
+          }
+
+          .ball-k3 {
+            width: 0.48rem;
+            height: 0.48rem;
+            background-size: 2*0.5rem 6*0.5rem;
+            margin: 0.04rem;
+            background-image: url("../../assets/img/lottery/k3/dice-k3.png");
+            border-radius: 0 !important;
+
+            &.ball-k3-1 {
+              background-position: 0 0;
+            }
+
+            &.ball-k3-2 {
+              background-position: 0 -1*0.5rem;
+            }
+
+            &.ball-k3-3 {
+              background-position: 0 -2*0.5rem;
+            }
+
+            &.ball-k3-4 {
+              background-position: 0 -3*0.5rem;
+            }
+
+            &.ball-k3-5 {
+              background-position: 0 -4*0.5rem;
+            }
+
+            &.ball-k3-6 {
+              background-position: 0 -5*0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .van-tab {
+    color: #c9ebd0 !important;
+  }
+
+  .van-tabs__line {
+    background-color: #f4c829 !important;
+  }
+
+  .van-tabs__nav {
+    background-color: #2e6345;
+  }
+}

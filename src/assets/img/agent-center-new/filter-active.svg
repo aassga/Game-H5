@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="208px" height="76px" viewBox="0 0 208 76" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>选中</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="208" height="76" rx="5"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="佣金明细--时间筛选" transform="translate(-40.000000, -657.000000)">
+            <g id="筛选" transform="translate(0.000000, -72.000000)">
+                <g id="Group-5" transform="translate(16.000000, 604.000000)">
+                    <g id="筛选">
+                        <g id="筛选项" transform="translate(24.000000, 56.000000)">
+                            <g id="日期">
+                                <g id="选中" transform="translate(0.000000, 69.000000)">
+                                    <mask id="mask-2" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <use id="Mask" fill="#2C93FF" opacity="0.08" xlink:href="#path-1"></use>
+                                    <g id="icon-选中" mask="url(#mask-2)">
+                                        <g transform="translate(170.000000, 44.000000)">
+                                            <path d="M0.140625,32 L38,0.969021462 L38,26 C38,29.3137085 35.3137085,32 32,32 L0.140625,32 Z" id="Combined-Shape" fill="#2C93FF"></path>
+                                            <polygon id="Shape" fill="#FFFFFF" transform="translate(26.506730, 21.093714) rotate(3.000000) translate(-26.506730, -21.093714) " points="34.3472942 14.4625277 34.5067301 17.5047459 24.8080962 27.7249013 18.5067301 22.0563084 21.5074228 21.8990488 24.8080962 23.9458394"></polygon>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

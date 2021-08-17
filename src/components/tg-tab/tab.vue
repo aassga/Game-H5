@@ -1,0 +1,354 @@
+<template>
+  <div
+          class="vux-tab-wrap"
+          :class="barPosition === 'top' ? 'vux-tab-bar-top' : ''">
+    <div class="vux-tab-container">
+      <div
+              class="vux-tab"
+              :class="[{'vux-tab-no-animate': !animate},{ scrollable },{'scrollable-lw':isChange==='连尾'},{'scrollable-qbz':isChange==='全不中'}]"
+              ref="nav">
+        <slot style="min-width: 100%;margin-right: 1px"></slot>
+        <div
+                v-if="animate"
+                class="vux-tab-ink-bar"
+                :class="barClass"
+                :style="barStyle">
+          <span
+                  class="vux-tab-bar-inner"
+                  :style="innerBarStyle"
+                  v-if="customBarWidth"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { parentMixin } from 'vux/src/mixins/multi-items'
+
+export default {
+  name: 'tg-tab',
+  mixins: [parentMixin],
+  mounted () {
+    // stop bar anmination on first loading
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.hasReady = true
+        this.currentIndex = this.value
+      }, 0)
+
+      const self = this
+
+      function task () {
+        if (self.$children[self.value]) {
+          self.$children[self.value].onItemClick()
+        } else {
+          setTimeout(task, 200)
+        }
+      }
+
+      task()
+    })
+  },
+  props: {
+    isChange: {},
+    value: {
+      type: Number,
+      default: 0
+    },
+    lineWidth: {
+      type: Number,
+      default: 3
+    },
+    activeColor: String,
+    barActiveColor: String,
+    defaultColor: String,
+    disabledColor: String,
+    animate: {
+      type: Boolean,
+      default: true
+    },
+    customBarWidth: [Function, String],
+    preventDefault: Boolean,
+    scrollThreshold: {
+      type: Number,
+      default: 4
+    },
+    barPosition: {
+      type: String,
+      default: 'bottom',
+      validator (val) {
+        return ['bottom', 'top'].indexOf(val) !== -1
+      }
+    }
+  },
+  computed: {
+    barLeft () {
+      if (this.hasReady) {
+        if (this.scrollable) {
+          this.scrollToActiveTab()
+          const target = this.$children[this.currentIndex].$el
+          if (target) {
+            const targetLeft = target.offsetLeft
+            return (targetLeft + 6) + 'px'
+          }
+        } else {
+          return `${this.currentIndex * (100 / this.number)}%`
+        }
+      }
+    },
+    barRight () {
+      if (this.hasReady) {
+        if (this.scrollable) {
+          this.scrollToActiveTab()
+          const width = this.$el.getBoundingClientRect().width
+          const target = this.$children[this.currentIndex].$el
+          if (target) {
+            const targetWidth = target.getBoundingClientRect().width
+            const targetLeft = target.offsetLeft
+            const right = width - targetLeft - targetWidth
+            return (right + 6) + 'px'
+          }
+        } else {
+          return `${(this.number - this.currentIndex - 1) * (100 / this.number)}%`
+        }
+      }
+    },
+    // when prop:custom-bar-width
+    innerBarStyle () {
+      return {
+        width: typeof this.customBarWidth === 'function' ? this.customBarWidth(this.currentIndex) : this.customBarWidth,
+        backgroundColor: this.barActiveColor || this.activeColor
+      }
+    },
+    // end
+    barStyle () {
+      const commonStyle = {
+        left: this.barLeft,
+        right: this.barRight,
+        display: 'block',
+        height: this.lineWidth + 'px',
+        transition: !this.hasReady ? 'none' : null
+      }
+      if (!this.customBarWidth) {
+        commonStyle.backgroundColor = this.barActiveColor || this.activeColor
+      } else {
+        commonStyle.backgroundColor = 'transparent' // when=prop:custom-bar-width
+      }
+      return commonStyle
+    },
+    barClass () {
+      return {
+        'vux-tab-ink-bar-transition-forward': this.direction === 'forward',
+        'vux-tab-ink-bar-transition-backward': this.direction === 'backward'
+      }
+    },
+    scrollable () {
+      return this.number > this.scrollThreshold
+    }
+  },
+  watch: {
+    currentIndex (newIndex, oldIndex) {
+      this.direction = newIndex > oldIndex ? 'forward' : 'backward'
+      this.$emit('on-index-change', newIndex, oldIndex)
+      this.$emit('input', newIndex)
+      this.hasReady && this.scrollToActiveTab()
+    }
+  },
+
+  data () {
+    return {
+      direction: 'forward',
+      right: '100%',
+      hasReady: false,
+      scrollLeft: 0
+    }
+  },
+  methods: {
+    scrollToActiveTab () {
+      if (!this.scrollable || !this.$children || !this.$children.length) {
+        return
+      }
+      const currentIndexTab = this.$children[this.currentIndex].$el
+      let count = 0
+      const nav = this.$refs.nav
+      // scroll animation
+      const step = () => {
+        const scrollDuration = 15
+        nav.scrollLeft += (currentIndexTab.offsetLeft - (nav.offsetWidth  / 2 - currentIndexTab.offsetWidth ) - nav.scrollLeft) / scrollDuration
+        if (++count < scrollDuration) {
+          window.requestAnimationFrame(step)
+        }
+      }
+      window.requestAnimationFrame(step)
+    }
+  }
+}
+</script>
+
+<style lang="less">
+  @import '~vux/src/styles/variable.less';
+
+  .scrollable-box{
+    padding-top:0;
+  }
+
+  @prefixClass: vux-tab;
+  @easing-in-out: cubic-bezier(0.35, 0, 0.25, 1);
+  @effect-duration: .3s;
+
+  .@{prefixClass} {
+
+    &-ink-bar {
+      position: absolute;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: @tab-bar-active-color;
+      text-align: center;
+
+      &-transition-forward {
+        transition: right @effect-duration @easing-in-out,
+        left @effect-duration @easing-in-out @effect-duration * 0.3;
+      }
+
+      &-transition-backward {
+        transition: right @effect-duration @easing-in-out @effect-duration * 0.3,
+        left @effect-duration @easing-in-out;
+      }
+    }
+
+  }
+
+  .vux-tab-bar-top .@{prefixClass} {
+    &-ink-bar {
+      top: 0;
+    }
+  }
+
+  .vux-tab {
+    display: flex;
+    background-color: unset;
+    height: 44px;
+    position: relative;
+  }
+
+  .vux-tab button {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: 0 0;
+    appearance: none;
+  }
+
+  .vux-tab .vux-tab-item {
+    display: block;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-size: 100% 1px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 44px;
+    color: @tab-text-default-color;
+  }
+
+  .vux-tab .vux-tab-item.vux-tab-selected {
+    font-weight: bold;
+    color: @tab-text-active-color;
+    border-bottom: 5px solid @tab-text-active-color;
+  }
+
+  .vux-tab-bar-top {
+    .vux-tab .vux-tab-item {
+      background-size: 100% 1px;
+    }
+
+    .vux-tab .vux-tab-item.vux-tab-selected {
+      border-bottom: none;
+      border-top: 3px solid @tab-text-active-color;
+    }
+  }
+
+  .vux-tab .vux-tab-item.vux-tab-disabled {
+    color: @tab-text-disabled-color;
+  }
+
+  .vux-tab.vux-tab-no-animate .vux-tab-item.vux-tab-selected {
+    background: 0 0;
+  }
+
+  /** when=prop:custom-bar-width **/
+  .vux-tab-bar-inner {
+    display: block;
+    background-color: @tab-text-active-color;
+    margin: auto;
+    height: 100%;
+    transition: width 0.3s @easing-in-out;
+  }
+
+  .vux-tab-item-badge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 18px;
+    min-width: 18px;
+    padding: 0 4px;
+    border-radius: 30px;
+    margin: auto 0 auto 4px;
+    line-height: 18px;
+    font-size: 11px;
+    background-clip: padding-box;
+    vertical-align: middle;
+  }
+
+  .vux-tab-wrap {
+    position: relative;
+    padding-top: 44px;
+  }
+
+  .vux-tab-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    position: absolute;
+  }
+
+  .scrollable {
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: content-box;
+  }
+
+  .scrollable::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollable .vux-tab-ink-bar {
+    bottom: 17px;
+    position: absolute;
+  }
+
+  .scrollable .vux-tab-item {
+    flex: 0 0 14%;
+  }
+
+  .scrollable-lw .vux-tab-item {
+    box-sizing: border-box;
+    flex: none;
+    width: auto !important;
+    padding: 0 0.3rem;
+  }
+  .scrollable-qbz .vux-tab-item {
+    box-sizing: border-box;
+    flex: none;
+    width: auto !important;
+    padding: 0 0.18rem;
+  }
+
+</style>
